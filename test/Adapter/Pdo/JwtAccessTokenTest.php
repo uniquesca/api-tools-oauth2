@@ -9,14 +9,14 @@ use DateTime;
 /**
  * @todo This adapter logic is not supported in the PDO adapter.
  */
-class JwtAccessTokenTest extends AbstractBaseTest
+class JwtAccessTokenTest extends AbstractBaseTestCase
 {
     /**
-     * @dataProvider provideStorage
      * @psalm-return never
      */
-    public function testJwtWithJti(object $storage)
+    public function testJwtWithJti()
     {
+        $storage = $this->getStorage();
         $this->markTestIncomplete('JWT access token is not yet supported in PDO adapter');
 
         $expires = new DateTime('today +1 day');

@@ -12,11 +12,11 @@ use function explode;
 use function sort;
 use function sprintf;
 
-class ScopeTest extends AbstractBaseTest
+class ScopeTest extends AbstractBaseTestCase
 {
-    /** @dataProvider provideStorage */
-    public function testScopeExists(object $storage): void
+    public function testScopeExists(): void
     {
+        $storage = $this->getStorage();
         if ($storage instanceof NullStorage) {
             $this->markTestSkipped('Skipped Storage: ' . $storage->getMessage());
 
@@ -41,9 +41,9 @@ class ScopeTest extends AbstractBaseTest
         $this->assertFalse($scopeUtil->scopeExists('supportedscope1 supportedscope2 supportedscope3 fakescope'));
     }
 
-    /** @dataProvider provideStorage */
-    public function testGetDefaultScope(object $storage): void
+    public function testGetDefaultScope(): void
     {
+        $storage = $this->getStorage();
         if ($storage instanceof NullStorage) {
             $this->markTestSkipped('Skipped Storage: ' . $storage->getMessage());
 

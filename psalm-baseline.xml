@@ -288,22 +288,13 @@
       <code><![CDATA[$config]]></code>
     </MixedAssignment>
   </file>
-  <file src="test/Adapter/Pdo/AbstractBaseTest.php">
-    <MixedArgument>
-      <code><![CDATA[$pdo]]></code>
-      <code><![CDATA[$pdo]]></code>
-    </MixedArgument>
+  <file src="test/Adapter/Pdo/AbstractBaseTestCase.php">
     <MixedAssignment>
       <code><![CDATA[$db]]></code>
-      <code><![CDATA[$pdo]]></code>
     </MixedAssignment>
     <MixedMethodCall>
       <code><![CDATA[exec]]></code>
     </MixedMethodCall>
-    <MixedReturnTypeCoercion>
-      <code><![CDATA[[[$pdo]]]]></code>
-      <code><![CDATA[array<array-key, array{0: PdoAdapter}>]]></code>
-    </MixedReturnTypeCoercion>
     <UndefinedInterfaceMethod>
       <code><![CDATA[setAllowOverride]]></code>
     </UndefinedInterfaceMethod>
@@ -332,10 +323,6 @@
       <code><![CDATA[NullStorage]]></code>
       <code><![CDATA[NullStorage]]></code>
     </UndefinedClass>
-    <UndefinedInterfaceMethod>
-      <code><![CDATA[isPublicClient]]></code>
-      <code><![CDATA[isPublicClient]]></code>
-    </UndefinedInterfaceMethod>
   </file>
   <file src="test/Adapter/Pdo/RefreshTokenTest.php">
     <UndefinedClass>

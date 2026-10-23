@@ -9,7 +9,7 @@ use ReflectionProperty;
 
 use function file_get_contents;
 
-abstract class AbstractBaseTest extends AbstractHttpControllerTestCase
+abstract class AbstractBaseTestCase extends AbstractHttpControllerTestCase
 {
     protected function setUp(): void
     {
@@ -24,15 +24,13 @@ abstract class AbstractBaseTest extends AbstractHttpControllerTestCase
     }
 
     /**
-     * @psalm-return array<array-key, array{0: PdoAdapter}>
      * @throws ReflectionException
      */
-    public function provideStorage(): array
+    protected function getStorage(): PdoAdapter
     {
-        $this->setUp();
-
         $serviceManager = $this->getApplication()->getServiceManager();
         $pdo            = $serviceManager->get(PdoAdapter::class);
+        self::assertInstanceOf(PdoAdapter::class, $pdo);
 
         $r = new ReflectionProperty($pdo, 'db');
         $r->setAccessible(true);
@@ -41,6 +39,6 @@ abstract class AbstractBaseTest extends AbstractHttpControllerTestCase
         $sql = file_get_contents(__DIR__ . '/../../TestAsset/database/pdo.sql');
         $db->exec($sql);
 
-        return [[$pdo]];
+        return $pdo;
     }
 }

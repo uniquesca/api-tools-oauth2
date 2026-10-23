@@ -7,14 +7,14 @@ namespace LaminasTest\ApiTools\OAuth2\Adapter\Pdo;
 /**
  * @todo This adapter logic is not supported in the PDO adapter
  */
-class JwtBearerTest extends AbstractBaseTest
+class JwtBearerTest extends AbstractBaseTestCase
 {
     /**
-     * @dataProvider provideStorage
      * @return never
      */
-    public function testGetClientKey(object $storage)
+    public function testGetClientKey()
     {
+        $storage = $this->getStorage();
         $this->markTestIncomplete('JWT is not supported in the PDO adapter');
 
         if ($storage instanceof NullStorage) {

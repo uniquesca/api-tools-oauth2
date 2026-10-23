@@ -9,14 +9,14 @@ use function file_get_contents;
 /**
  * @todo This adapter logic is not supported in the PDO adapter
  */
-class PublicKeyTest extends AbstractBaseTest
+class PublicKeyTest extends AbstractBaseTestCase
 {
     /**
-     * @dataProvider provideStorage
      * @psalm-return never
      */
-    public function testSetAccessToken(object $storage)
+    public function testSetAccessToken()
     {
+        $storage = $this->getStorage();
         $this->markTestIncomplete('Public key functionality is not yet supported in all providers');
 
         $globalPublicKey  = file_get_contents(__DIR__ . '/../../TestAsset/data/pubkey.pem');

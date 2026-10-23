@@ -220,7 +220,7 @@ where "testpass" is the user's password that you want to encrypt. The output of
 the previous command will be the hash value of the user's password, a string of
 60 bytes like the following:
 
-```
+```text
 $2y$14$f3qml4G2hG6sxM26VMq.geDYbsS089IBtVJ7DlD05BoViS9PFykE2
 ```
 
@@ -269,7 +269,6 @@ If everything works fine, you should receive a response like this:
 call, a [TLS/SSL](http://en.wikipedia.org/wiki/Transport_Layer_Security)
 connection is required.
 
-
 ## AUTHORIZE (code)
 
 If you have to integrate an OAuth2 service with a web application, you need to
@@ -302,7 +301,6 @@ To enable the module to accept the implicit grant type, you need to change the
 configuration of `allow_implicit` to `true` in the
 `config/autoload/oauth2.local.php` file:
 
-
 ```php
 return array(
     'api-tools-oauth2' => array(
@@ -316,7 +314,7 @@ return array(
 To request a token from the client side, you need to request authorization via
 the OAuth2 server:
 
-```
+```text
 http://<URL of your Laminas app>/oauth/authorize?response_type=token&client_id=testclient&redirect_uri=/oauth/receivecode&state=xyz
 ```
 
@@ -325,7 +323,7 @@ you authorize the access, the request will be redirected to `/oauth/receivecode`
 (as provided in the `redirect_uri` parameter in the above example), with the
 `access_token` specified in the URI fragment, per the following sample:
 
-```
+```text
 /oauth/receivecode#access_token=559d8f9b6bedd8d94c8e8d708f87475f4838c514&expires_in=3600&token_type=Bearer&state=xyz
 ```
 

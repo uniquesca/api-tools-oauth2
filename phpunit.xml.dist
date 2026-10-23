@@ -4,11 +4,11 @@
     xsi:noNamespaceSchemaLocation="./vendor/phpunit/phpunit/phpunit.xsd"
     bootstrap="vendor/autoload.php"
     colors="true">
-    <coverage processUncoveredFiles="true">
+    <source>
         <include>
             <directory suffix=".php">./src</directory>
         </include>
-    </coverage>
+    </source>
 
     <testsuites>
         <testsuite name="adapter-pdo">
@@ -17,6 +17,7 @@
 
         <testsuite name="Laminas\ApiTools\OAuth2 Tests">
             <directory>./test</directory>
+            <exclude>./test/Adapter/Pdo</exclude>
         </testsuite>
     </testsuites>
 </phpunit>

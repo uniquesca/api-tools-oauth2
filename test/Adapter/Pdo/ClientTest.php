@@ -4,16 +4,14 @@ declare(strict_types=1);
 
 namespace LaminasTest\ApiTools\OAuth2\Adapter\Pdo;
 
-use OAuth2\Storage\ClientInterface;
-
 use function mt_getrandmax;
 use function random_int;
 
-class ClientTest extends AbstractBaseTest
+class ClientTest extends AbstractBaseTestCase
 {
-    /** @dataProvider provideStorage */
-    public function testGetClientDetails(ClientInterface $storage): void
+    public function testGetClientDetails(): void
     {
+        $storage = $this->getStorage();
         if ($storage instanceof NullStorage) {
             $this->markTestSkipped('Skipped Storage: ' . $storage->getMessage());
 
@@ -32,9 +30,9 @@ class ClientTest extends AbstractBaseTest
         $this->assertArrayHasKey('redirect_uri', $details);
     }
 
-    /** @dataProvider provideStorage */
-    public function testCheckRestrictedGrantType(ClientInterface $storage): void
+    public function testCheckRestrictedGrantType(): void
     {
+        $storage = $this->getStorage();
         if ($storage instanceof NullStorage) {
             $this->markTestSkipped('Skipped Storage: ' . $storage->getMessage());
 
@@ -53,9 +51,9 @@ class ClientTest extends AbstractBaseTest
         $this->assertTrue($storage->checkRestrictedGrantType('invalidclient', 'implicit'));
     }
 
-    /** @dataProvider provideStorage */
-    public function testGetAccessToken(ClientInterface $storage): void
+    public function testGetAccessToken(): void
     {
+        $storage = $this->getStorage();
         if ($storage instanceof NullStorage) {
             $this->markTestSkipped('Skipped Storage: ' . $storage->getMessage());
 
@@ -71,9 +69,9 @@ class ClientTest extends AbstractBaseTest
         $this->assertNotNull($details);
     }
 
-    /** @dataProvider provideStorage */
-    public function testSaveClient(ClientInterface $storage): void
+    public function testSaveClient(): void
     {
+        $storage = $this->getStorage();
         if ($storage instanceof NullStorage) {
             $this->markTestSkipped('Skipped Storage: ' . $storage->getMessage());
 
@@ -101,18 +99,18 @@ class ClientTest extends AbstractBaseTest
         $this->assertEquals($details['scope'], 'clientscope1');
     }
 
-    /** @dataProvider provideStorage */
-    public function testIsPublicClient(ClientInterface $storage): void
+    public function testIsPublicClient(): void
     {
+        $storage = $this->getStorage();
         $this->assertFalse($storage->isPublicClient('testclient'));
         // FIXME:  add a test which can return true
         // $this->assertTrue($storage->isPublicClient('oauth_test_client3'));
         $this->assertFalse($storage->isPublicClient('invalidclient'));
     }
 
-    /** @dataProvider provideStorage */
-    public function testGetClientScope(ClientInterface $storage): void
+    public function testGetClientScope(): void
     {
+        $storage = $this->getStorage();
         $this->assertEquals('clientscope1', $storage->getClientScope('testclient'));
         $this->assertFalse($storage->getClientScope('invalidclient'));
     }
